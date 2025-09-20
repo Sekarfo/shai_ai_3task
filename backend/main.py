@@ -11,13 +11,23 @@ load_dotenv()
 
 WEATHER_API_BASE = os.getenv("WEATHER_API_BASE", "https://api.open-meteo.com/v1/forecast")
 ML_SCORE_URL     = os.getenv("ML_SCORE_URL", "http://localhost:8000/score")
-LLM_MODE         = os.getenv("LLM_MODE", "simple").lower()   # simple | openai
+LLM_MODE         = os.getenv("LLM_MODE", "simple").lower()   
 LLM_URL          = os.getenv("LLM_URL", "").rstrip("/")
 LLM_API_KEY      = os.getenv("LLM_API_KEY", "")
 LLM_MODEL        = os.getenv("LLM_MODEL", "gpt-4o-mini")
 HTTP_TIMEOUT     = float(os.getenv("HTTP_TIMEOUT", "15"))
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(title="SupplyChain Risk Orchestrator", version="0.2.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],           
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ---------- 1) СХЕМЫ ----------
 class PredictIn(BaseModel):
@@ -173,13 +183,13 @@ def extract_json(text: str) -> Dict[str, Any]:
         except Exception:
             return {"summary": str(text)[:800]}
 
-    # Попытка №1: весь текст — JSON
+    
     try:
         return json.loads(text)
     except Exception:
         pass
 
-    # Попытка №2: извлечь первый балансный объект { ... }
+    
     start = text.find("{")
     while start != -1:
         i = start
@@ -382,7 +392,7 @@ async def predict(payload: PredictIn):
 
     wx    = await fetch_weather(payload.lat, payload.lon, payload.eta_date)
     feats = build_features(wx, payload.eta_date, payload.fx_volatility_7d, payload.road_load_index)
-    ml_out, ml_raw = await score_ml(route_id, feats)       # <— теперь получаем два значения
+    ml_out, ml_raw = await score_ml(route_id, feats)       
     llm    = await explain_with_llm(route_id, feats, ml_out, ml_raw)
 
     return OrchestratorOut(
@@ -390,7 +400,7 @@ async def predict(payload: PredictIn):
         eta_date=payload.eta_date,
         features=feats,
         ml_output=ml_out,
-        ml_raw=ml_raw,                                     # <— отдадим клиенту для отладки
+        ml_raw=ml_raw,                                     
         llm_explanation=llm,
     )
 

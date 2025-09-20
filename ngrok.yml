@@ -1,0 +1,9 @@
+version: 2
+authtoken: 32o8gbQGoYiU4lIgjX7NAcsTqyj_4knjzhWCXGvWYG3x3jbSv
+tunnels:
+  ui:
+    addr: 8502
+    proto: http
+  backend:
+    addr: 9001
+    proto: http

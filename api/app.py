@@ -28,11 +28,11 @@ class ScoreRequest(BaseModel):
 class ScoreItem(BaseModel):
     route_id: str = ""
     risk_score: float   # 0..100
-    risk_level: str     # временно маппим зел/жёлт/красн — можешь заменить своей логикой
+    risk_level: str     
 
 def _prep_df(payload: List[Dict[str, Any]]) -> pd.DataFrame:
     X = pd.DataFrame(payload)
-    # гарантируем все ожидаемые фичи
+    
     for c in NUM_COLS:
         if c not in X.columns:
             X[c] = np.nan
