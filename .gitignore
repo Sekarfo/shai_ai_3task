@@ -1,0 +1,8 @@
+# указать папку venv и папку pycache из api 
+venv/
+api/__pycache__/
+backend/__pycache__/
+streamlit/__pycache__/
+*.env
+backend/.env
+streamlit/.env

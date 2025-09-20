@@ -1,0 +1,39 @@
+{
+  "rows_train": 800,
+  "rows_test": 200,
+  "num_cols": [
+    "precipitation_sum_mm",
+    "wind_speed_10m_max_kmh",
+    "wind_gusts_10m_max_kmh",
+    "temperature_2m_max_c",
+    "temperature_2m_min_c",
+    "fx_volatility_7d",
+    "road_load_index",
+    "precip_heavy_flag",
+    "wind_strong_flag",
+    "gusts_extreme_flag",
+    "freeze_flag",
+    "heat_flag"
+  ],
+  "model": "lightgbm",
+  "best_iter": 910,
+  "metrics": {
+    "MAE": 0.697690683579306,
+    "RMSE": 1.1332067553973069,
+    "R2": 0.9922396660898813
+  },
+  "feature_importance": {
+    "precipitation_sum_mm": 5283,
+    "wind_speed_10m_max_kmh": 4502,
+    "wind_gusts_10m_max_kmh": 4104,
+    "temperature_2m_max_c": 2778,
+    "temperature_2m_min_c": 3279,
+    "fx_volatility_7d": 3393,
+    "road_load_index": 4007,
+    "precip_heavy_flag": 52,
+    "wind_strong_flag": 31,
+    "gusts_extreme_flag": 8,
+    "freeze_flag": 91,
+    "heat_flag": 16
+  }
+}
