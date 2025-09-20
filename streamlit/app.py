@@ -15,10 +15,24 @@ st.caption("Вводите маршрут, ETA и FX-волну — осталь
 
 # === Простая карта назначения (дополняйте под себя) ===
 DEST_LOOKUP = {
-    "KZ-ALMATY":  {"name": "Almaty",   "lat": 43.2567, "lon": 76.9286},
-    "KZ-PAVLODAR":{"name": "Pavlodar", "lat": 52.2873, "lon": 76.9719},
-    "CN-SHANGHAI":{"name": "Shanghai", "lat": 31.2304, "lon": 121.4737},
-    "KZ-ASTANA":  {"name": "Astana",   "lat": 51.1694, "lon": 71.4491},
+    "KZ-ALMATY":   {"name": "Almaty",    "lat": 43.2567, "lon": 76.9286},
+    "KZ-PAVLODAR": {"name": "Pavlodar",  "lat": 52.2873, "lon": 76.9719},
+    "CN-SHANGHAI": {"name": "Shanghai",  "lat": 31.2304, "lon": 121.4737},
+    "KZ-ASTANA":   {"name": "Astana",    "lat": 51.1694, "lon": 71.4491},
+
+    
+    "KZ-KARAGANDA": {"name": "Karaganda", "lat": 49.8028, "lon": 73.0875},
+    "KZ-SHYMKENT":  {"name": "Shymkent",  "lat": 42.3417, "lon": 69.5901},
+    "KZ-AKTAY":     {"name": "Aktau",     "lat": 43.6481, "lon": 51.1722},
+
+    "RU-OMSK":   {"name": "Omsk",   "lat": 54.9885, "lon": 73.3242},
+    "RU-NOVOSIB": {"name": "Novosibirsk", "lat": 55.0084, "lon": 82.9357},
+    "RU-CHELYAB": {"name": "Chelyabinsk", "lat": 55.1644, "lon": 61.4368},
+
+    
+    "CN-URUMQI":   {"name": "Urumqi",   "lat": 43.8256, "lon": 87.6168},
+    "CN-KASHGAR":  {"name": "Kashgar",  "lat": 39.4704, "lon": 75.9898},
+    "CN-LANZHOU":  {"name": "Lanzhou",  "lat": 36.0611, "lon": 103.8343},
 }
 
 def infer_destination(route_id: str):
